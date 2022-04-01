@@ -23,22 +23,22 @@
       </div>
     </div>
       <div class="">
-        <h1>Max</h1>
-        {{_showH[0].name}}
-        <img :src='_showH[0].image'>
+        <h1>Min</h1>
+        {{_showP[0].name}}
+        <img :src='_showP[0].image'>
           <div>
-            <h1>Tên sản phẩm {{_showH[0].name}}</h1>
-            <p>Giá sản phẩm {{_showH[0].price}}</p>
-            <p>Ngày SX {{_showH[0].publicDate}}</p>
+            <h1>Tên sản phẩm {{_showP[0].name}}</h1>
+            <p>Giá sản phẩm {{_showP[0].price}}</p>
+            <p>Ngày SX {{_showP[0].publicDate}}</p>
           </div>
       </div>
       <div class="">
-        <h1>Min</h1>
-        <img :src='_showL[0].image'>
+        <h1>Max</h1>
+        <img :src='_showP[_showP.length - 1].image'>
           <div>
-            <h1>Tên sản phẩm {{_showL[0].name}}</h1>
-            <p>Giá sản phẩm {{_showL[0].price}}</p>
-            <p>Ngày SX {{_showL[0].publicDate}}</p>
+            <h1>Tên sản phẩm {{_showP[_showP.length - 1].name}}</h1>
+            <p>Giá sản phẩm {{_showP[_showP.length - 1].price}}</p>
+            <p>Ngày SX {{_showP[_showP.length - 1].publicDate}}</p>
           </div>
       </div>
   </div>
@@ -95,12 +95,10 @@ computed: {
   showProductHot() {
     return this.products.filter(x => x.hot)
   },
-  _showL() {
-    return this.products.filter(x => Math.min(x.price))
+  _showP() {
+    return this.products.sort((a, b) => {return a.price - b.price})
   },
-  _showH() {
-    return this.products.filter(x => Math.max(x.price))
-  }
+
 }
 ,
 methods: {
